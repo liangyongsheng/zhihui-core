@@ -27,6 +27,10 @@ public abstract class DaoBase {
 	@Autowired
 	private HibernateTemplate hibernateTemplate;
 
+	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+		this.hibernateTemplate = hibernateTemplate;
+	}
+
 	public abstract <T> T getById(long id);
 
 	protected Connection getConnection() throws SQLException {

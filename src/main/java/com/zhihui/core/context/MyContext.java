@@ -64,12 +64,11 @@ public class MyContext implements Filter, ServletContextAware, ApplicationContex
 	}
 
 	public static ApplicationContext getRootApplicationContext() {
-		return MyContext.ClassPathXmlApplicationContext(null);
+		return MyContext.getApplicationContext();
 	}
 
-	public static ApplicationContext ClassPathXmlApplicationContext(String classPathFileName) {
+	public static ApplicationContext getApplicationContext() {
 		ApplicationContext applicationContext = null;
-
 		// way 1: use ApplicationContextAware, but you should configure it in beans like "<bean id="MyContext" class="*.MyContext" />"
 		applicationContext = MyContext.applicationContext;
 		if (applicationContext != null)
@@ -89,6 +88,12 @@ public class MyContext implements Filter, ServletContextAware, ApplicationContex
 		}
 		if (applicationContext != null)
 			return applicationContext;
+
+		return applicationContext;
+	}
+
+	public static ApplicationContext getClassPathXmlApplicationContext(String classPathFileName) {
+		ApplicationContext applicationContext = null;
 
 		// way 4 : use ClassPathXmlApplicationContext
 		if (classPathFileName != null && !classPathFileName.equals(""))
