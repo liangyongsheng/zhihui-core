@@ -1,27 +1,27 @@
 package com.zhihui.core.exception;
 
-public class ServiceException extends CoreException {
+public class PartnerServiceException extends CoreException {
 	private static final long serialVersionUID = -8817010236903262160L;
-	private String code = "CoreException";
-	private String subCode = "ServiceException";
+	private String code = "coreException";
+	private String subCode = "serviceException";
 
-	public ServiceException() {
+	public PartnerServiceException() {
 		super();
 	}
 
-	public ServiceException(String arg0) {
+	public PartnerServiceException(String arg0) {
 		super(arg0);
 	}
 
-	public ServiceException(String arg0, Throwable arg1) {
+	public PartnerServiceException(String arg0, Throwable arg1) {
 		super(arg0, arg1);
 	}
 
-	public ServiceException(Throwable arg0) {
+	public PartnerServiceException(Throwable arg0) {
 		super(arg0);
 	}
 
-	protected ServiceException(String arg0, Throwable arg1, boolean arg2, boolean arg3) {
+	protected PartnerServiceException(String arg0, Throwable arg1, boolean arg2, boolean arg3) {
 		super(arg0, arg1, arg2, arg3);
 	}
 
