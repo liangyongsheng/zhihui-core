@@ -2,8 +2,8 @@ package com.zhihui.core.exception;
 
 public class CheckIllicitValueException extends CheckException {
 	private static final long serialVersionUID = 7923154213026926429L;
-	private String code = "CheckException";
-	private String subCode = "CheckIllicitValueException";
+	private String code = "checkException";
+	private String subCode = "checkIllicitValueException";
 
 	public CheckIllicitValueException() {
 		super();

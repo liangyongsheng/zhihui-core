@@ -2,8 +2,8 @@ package com.zhihui.core.exception;
 
 public class AsignMismatchTypeException extends AsignException {
 	private static final long serialVersionUID = -6290107522447259694L;
-	private String code = "AsignException";
-	private String subCode = "AsignMismatchTypeException";
+	private String code = "asignException";
+	private String subCode = "asignMismatchTypeException";
 
 	public AsignMismatchTypeException() {
 		super();

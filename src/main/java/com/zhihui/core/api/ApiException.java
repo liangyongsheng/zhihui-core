@@ -4,8 +4,8 @@ import com.zhihui.core.exception.CoreException;
 
 public class ApiException extends CoreException {
 	private static final long serialVersionUID = 3350730684201679550L;
-	private String code = "CoreException";
-	private String subCode = "ApiException";
+	private String code = "coreException";
+	private String subCode = "apiException";
 
 	public ApiException() {
 		super();

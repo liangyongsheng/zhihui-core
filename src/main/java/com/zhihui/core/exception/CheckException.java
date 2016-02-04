@@ -2,8 +2,8 @@ package com.zhihui.core.exception;
 
 public class CheckException extends CoreException {
 	private static final long serialVersionUID = 6224458067278021776L;
-	private String code = "CoreException";
-	private String subCode = "CheckException";
+	private String code = "coreException";
+	private String subCode = "checkException";
 
 	public CheckException() {
 		super();

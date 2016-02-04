@@ -2,8 +2,8 @@ package com.zhihui.core.exception;
 
 public class InitException extends CoreException {
 	private static final long serialVersionUID = -1818547209232242187L;
-	private String code = "CoreException";
-	private String subCode = "InitException";
+	private String code = "coreException";
+	private String subCode = "initException";
 
 	public InitException() {
 		super();

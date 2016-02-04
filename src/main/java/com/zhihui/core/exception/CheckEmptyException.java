@@ -2,8 +2,8 @@ package com.zhihui.core.exception;
 
 public class CheckEmptyException extends CheckException {
 	private static final long serialVersionUID = 9102016714892256848L;
-	private String code = "CheckException";
-	private String subCode = "CheckEmptyException";
+	private String code = "checkException";
+	private String subCode = "checkEmptyException";
 
 	public CheckEmptyException() {
 		super();

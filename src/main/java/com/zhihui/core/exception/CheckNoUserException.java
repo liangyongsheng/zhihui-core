@@ -2,8 +2,8 @@ package com.zhihui.core.exception;
 
 public class CheckNoUserException extends CheckException {
 	private static final long serialVersionUID = -995248671429553146L;
-	private String code = "CheckException";
-	private String subCode = "CheckNoUserException";
+	private String code = "checkException";
+	private String subCode = "checkNoUserException";
 
 	public CheckNoUserException() {
 		super();

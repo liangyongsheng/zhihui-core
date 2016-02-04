@@ -2,8 +2,8 @@ package com.zhihui.core.api;
 
 public class ApiNoMethodException extends ApiException {
 	private static final long serialVersionUID = -6181970245569122752L;
-	private String code = "ApiException";
-	private String subCode = "ApiNoMethodException";
+	private String code = "apiException";
+	private String subCode = "apiNoMethodException";
 
 	public ApiNoMethodException() {
 		super();

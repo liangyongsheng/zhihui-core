@@ -2,8 +2,8 @@ package com.zhihui.core.exception;
 
 public class AsignException extends CoreException {
 	private static final long serialVersionUID = 111956721740899706L;
-	private String code = "CoreException";
-	private String subCode = "AsignException";
+	private String code = "coreException";
+	private String subCode = "asignException";
 
 	public AsignException() {
 		super();

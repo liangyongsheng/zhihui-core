@@ -2,8 +2,8 @@ package com.zhihui.core.exception;
 
 public class BusinessException extends CoreException {
 	private static final long serialVersionUID = 1884831021481767463L;
-	private String code = "CoreException";
-	private String subCode = "BusinessException";
+	private String code = "coreException";
+	private String subCode = "businessException";
 
 	public BusinessException() {
 		super();

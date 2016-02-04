@@ -1,6 +1,9 @@
 package com.zhihui.core.context;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -64,10 +67,6 @@ public class MyContext implements Filter, ServletContextAware, ApplicationContex
 	}
 
 	public static ApplicationContext getRootApplicationContext() {
-		return MyContext.getApplicationContext();
-	}
-
-	public static ApplicationContext getApplicationContext() {
 		ApplicationContext applicationContext = null;
 		// way 1: use ApplicationContextAware, but you should configure it in beans like "<bean id="MyContext" class="*.MyContext" />"
 		applicationContext = MyContext.applicationContext;
@@ -90,6 +89,28 @@ public class MyContext implements Filter, ServletContextAware, ApplicationContex
 			return applicationContext;
 
 		return applicationContext;
+	}
+
+	public static List<ApplicationContext> getApplicationContexts() {
+		List<ApplicationContext> rs = new ArrayList<ApplicationContext>();
+		ServletContext servletContext = getServletContext();
+		if (servletContext != null) {
+			Enumeration<String> es = servletContext.getAttributeNames();
+			while (es.hasMoreElements()) {
+				try {
+					String name = es.nextElement();
+					if (name != null) {
+						Object obj = servletContext.getAttribute(name);
+						if (obj instanceof ApplicationContext)
+							rs.add((ApplicationContext) obj);
+						// if (ApplicationContext.class.isAssignableFrom(obj.getClass())) {
+						// }
+					}
+				} catch (Throwable e) {
+				}
+			}
+		}
+		return rs;
 	}
 
 	public static ApplicationContext getClassPathXmlApplicationContext(String classPathFileName) {

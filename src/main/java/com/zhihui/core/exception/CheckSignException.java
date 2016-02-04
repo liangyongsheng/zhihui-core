@@ -2,8 +2,8 @@ package com.zhihui.core.exception;
 
 public class CheckSignException extends CheckException {
 	private static final long serialVersionUID = -7159439023658670085L;
-	private String code = "CheckException";
-	private String subCode = "CheckSignException";
+	private String code = "checkException";
+	private String subCode = "checkSignException";
 
 	public CheckSignException() {
 		super();
