@@ -10,10 +10,10 @@ import org.codehaus.jackson.map.JsonSerializer;
 import org.codehaus.jackson.map.SerializerProvider;
 
 public class JsonStr2DatetimeSerializer extends JsonSerializer<Date> {
-	private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	@Override
 	public void serialize(Date arg0, JsonGenerator arg1, SerializerProvider arg2) throws IOException, JsonProcessingException {
-		arg1.writeString(df.format(arg0));
+		arg1.writeString(sdf.format(arg0));
 	}
 }

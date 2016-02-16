@@ -6,11 +6,11 @@ import java.util.Date;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 public class XmlStr2DatetimeAdapter extends XmlAdapter<String, Date> {
-	private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	@Override
 	public String marshal(Date arg0) throws Exception {
-		return df.format(arg0);
+		return sdf.format(arg0);
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class XmlStr2DatetimeAdapter extends XmlAdapter<String, Date> {
 			arg0 = arg0.replace("T", " ");
 		}
 
-		return df.parse(arg0);
+		return sdf.parse(arg0);
 	}
 
 }

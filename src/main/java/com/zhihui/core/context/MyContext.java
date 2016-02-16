@@ -3,7 +3,9 @@ package com.zhihui.core.context;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -40,6 +42,7 @@ public class MyContext implements Filter, ServletContextAware, ApplicationContex
 	private static ServletResponse servletResponse;
 	private static ServletContext servletContext;
 	private static ApplicationContext applicationContext;
+	private static Map<String, ApplicationContext> applicationContextForClassPathXmls = new HashMap<String, ApplicationContext>();
 
 	@Override
 	public void destroy() {
@@ -117,8 +120,14 @@ public class MyContext implements Filter, ServletContextAware, ApplicationContex
 		ApplicationContext applicationContext = null;
 
 		// way 4 : use ClassPathXmlApplicationContext
-		if (classPathFileName != null && !classPathFileName.equals(""))
-			applicationContext = new ClassPathXmlApplicationContext("classpath:" + classPathFileName);
+		if (classPathFileName != null && !classPathFileName.equals("")) {
+			if (applicationContextForClassPathXmls.get(classPathFileName) != null)
+				applicationContext = applicationContextForClassPathXmls.get(classPathFileName);
+			else {
+				applicationContext = new ClassPathXmlApplicationContext("classpath:" + classPathFileName);
+				applicationContextForClassPathXmls.put(classPathFileName, applicationContext);
+			}
+		}
 		if (applicationContext != null)
 			return applicationContext;
 

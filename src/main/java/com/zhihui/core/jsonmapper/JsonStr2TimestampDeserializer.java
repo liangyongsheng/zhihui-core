@@ -10,7 +10,7 @@ import org.codehaus.jackson.map.DeserializationContext;
 import org.codehaus.jackson.map.JsonDeserializer;
 
 public class JsonStr2TimestampDeserializer extends JsonDeserializer<Timestamp> {
-	private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	@Override
 	public Timestamp deserialize(JsonParser arg0, DeserializationContext arg1) throws IOException, JsonProcessingException {
@@ -22,7 +22,7 @@ public class JsonStr2TimestampDeserializer extends JsonDeserializer<Timestamp> {
 				tmp = tmp.substring(0, 19);
 				tmp = tmp.replace("T", " ");
 			}
-			rs = new Timestamp(df.parse(tmp).getTime());
+			rs = new Timestamp(sdf.parse(tmp).getTime());
 		} catch (Throwable e) {
 			throw new IOException(e);
 		}

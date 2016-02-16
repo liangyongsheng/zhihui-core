@@ -11,10 +11,10 @@ import org.codehaus.jackson.map.JsonSerializer;
 import org.codehaus.jackson.map.SerializerProvider;
 
 public class JsonStr2TimestampSerializer extends JsonSerializer<Timestamp> {
-	private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	@Override
 	public void serialize(Timestamp arg0, JsonGenerator arg1, SerializerProvider arg2) throws IOException, JsonProcessingException {
-		arg1.writeString(df.format(new Date(arg0.getTime())));
+		arg1.writeString(sdf.format(new Date(arg0.getTime())));
 	}
 }

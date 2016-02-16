@@ -10,7 +10,7 @@ import org.codehaus.jackson.map.DeserializationContext;
 import org.codehaus.jackson.map.JsonDeserializer;
 
 public class JsonStr2DateDeserializer extends JsonDeserializer<Date> {
-	private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	@Override
 	public Date deserialize(JsonParser arg0, DeserializationContext arg1) throws IOException, JsonProcessingException {
@@ -18,7 +18,7 @@ public class JsonStr2DateDeserializer extends JsonDeserializer<Date> {
 		try {
 			String tmp = arg0.getText();
 			tmp = tmp.length() >= 10 ? tmp.substring(0, 10) : tmp;
-			rs = df.parse(tmp);
+			rs = sdf.parse(tmp);
 		} catch (Throwable e) {
 			throw new IOException(e);
 		}

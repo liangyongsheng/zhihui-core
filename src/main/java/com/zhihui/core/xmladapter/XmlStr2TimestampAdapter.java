@@ -7,11 +7,11 @@ import java.util.Date;
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 
 public class XmlStr2TimestampAdapter extends XmlAdapter<String, Timestamp> {
-	private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	@Override
 	public String marshal(Timestamp arg0) throws Exception {
-		return df.format(new Date(arg0.getTime()));
+		return sdf.format(new Date(arg0.getTime()));
 	}
 
 	@Override
@@ -21,6 +21,6 @@ public class XmlStr2TimestampAdapter extends XmlAdapter<String, Timestamp> {
 			arg0 = arg0.substring(0, 19);
 			arg0 = arg0.replace("T", " ");
 		}
-		return new Timestamp(df.parse(arg0).getTime());
+		return new Timestamp(sdf.parse(arg0).getTime());
 	}
 }

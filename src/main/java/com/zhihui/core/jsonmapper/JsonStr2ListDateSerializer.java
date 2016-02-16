@@ -11,7 +11,7 @@ import org.codehaus.jackson.map.JsonSerializer;
 import org.codehaus.jackson.map.SerializerProvider;
 
 public class JsonStr2ListDateSerializer extends JsonSerializer<List<Date>> {
-	private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	@Override
 	public void serialize(List<Date> arg0, JsonGenerator arg1, SerializerProvider arg2) throws IOException, JsonProcessingException {
@@ -21,7 +21,7 @@ public class JsonStr2ListDateSerializer extends JsonSerializer<List<Date>> {
 			else {
 				arg1.writeStartArray();
 				for (Date e : arg0)
-					arg1.writeObject(df.format(e));
+					arg1.writeObject(sdf.format(e));
 				arg1.writeEndArray();
 			}
 		} catch (Throwable e) {

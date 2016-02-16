@@ -12,7 +12,7 @@ import org.codehaus.jackson.map.DeserializationContext;
 import org.codehaus.jackson.map.JsonDeserializer;
 
 public class JsonStr2ListDateDeserializer extends JsonDeserializer<List<Date>> {
-	private SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+	private SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 	@Override
 	@SuppressWarnings("unchecked")
@@ -26,7 +26,7 @@ public class JsonStr2ListDateDeserializer extends JsonDeserializer<List<Date>> {
 				rs = new ArrayList<Date>();
 				for (String e : tmps) {
 					e = e.length() >= 10 ? e.substring(0, 10) : e;
-					rs.add(df.parse(e));
+					rs.add(sdf.parse(e));
 				}
 			}
 		} catch (Throwable e) {
