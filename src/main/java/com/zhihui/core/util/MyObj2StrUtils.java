@@ -3,6 +3,8 @@ package com.zhihui.core.util;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.map.ObjectMapper;
 
+import com.zhihui.core.exception.CoreException;
+
 public class MyObj2StrUtils {
 	/**
 	 * when (len <= 0) is original string
@@ -37,4 +39,21 @@ public class MyObj2StrUtils {
 		return rs;
 	}
 
+	/**
+	 * 
+	 * @param json
+	 * @param type
+	 * @return
+	 */
+	public static <T> T fromJson(String json, Class<T> type) throws CoreException {
+		T rs = null;
+		try {
+			ObjectMapper om = new ObjectMapper();
+			om.configure(JsonParser.Feature.ALLOW_UNQUOTED_CONTROL_CHARS, true);
+			rs = (T) om.readValue(json, type);
+		} catch (Throwable e) {
+			throw new CoreException(e);
+		}
+		return rs;
+	}
 }

@@ -38,6 +38,7 @@ public abstract class ApiRequest<T extends ApiResponse> {
 	@JsonDeserialize(using = JsonStr2DatetimeDeserializer.class)
 	private Date timestamp;
 	private Integer oprtId;
+	private String oprtSecret;
 	@XmlTransient
 	@JsonIgnore
 	public String sign;
@@ -69,6 +70,22 @@ public abstract class ApiRequest<T extends ApiResponse> {
 		this.oprtId = oprtId;
 	}
 
+	public String getOprtSecret() {
+		return oprtSecret;
+	}
+
+	public void setOprtSecret(String oprtSecret) {
+		this.oprtSecret = oprtSecret;
+	}
+
+	public String getMessageBody() {
+		return messageBody;
+	}
+
+	public void setMessageBody(String messageBody) {
+		this.messageBody = messageBody;
+	}
+
 	// ---functions start here...
 	public abstract Class<T> getResponseType();
 
@@ -98,6 +115,8 @@ public abstract class ApiRequest<T extends ApiResponse> {
 			throw new CheckEmptyException("field: timestamp, value is empty");
 		if (this.oprtId == null || this.oprtId <= 0)
 			throw new CheckIllicitValueException("field: oprtId is illicit");
+		if (MyStringUtils.isEmpty(this.oprtSecret))
+			throw new CheckEmptyException("field: oprtSecret, value is empty");
 	}
 
 	public abstract void checkApiParams() throws CheckException;
