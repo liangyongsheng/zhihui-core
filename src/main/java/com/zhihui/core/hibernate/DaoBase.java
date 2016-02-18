@@ -53,6 +53,11 @@ public abstract class DaoBase {
 			this.hibernateTemplate.update(objModel);
 	}
 
+	/**
+	 * add the object
+	 * 
+	 * @param objModel
+	 */
 	public <T> void add(T objModel) {
 		if (MyTransaction.getCurrentSession() != null)
 			MyTransaction.getCurrentSession().save(objModel);
