@@ -48,7 +48,7 @@ public class MyTransaction {
 				throw new HibernateException(e);
 			}
 			if (hibernateTemplate == null)
-				throw new HibernateException("hibernateTemplate is null");
+				throw new HibernateException("hibernateTemplate is null.");
 		}
 
 		// session, transaction
@@ -81,7 +81,7 @@ public class MyTransaction {
 			myTransaction.transactionCount++;
 			mpTransactions.put(threadId, myTransaction);
 		} else
-			throw new HibernateException("can not open a transaction");
+			throw new HibernateException("can not open a transaction.");
 	}
 
 	/**
@@ -116,7 +116,7 @@ public class MyTransaction {
 			}
 		} else if (myTransaction.transactionCount < 0) {
 			myTransaction.transactionCount = 0;
-			throw new HibernateException("already have commited or rollbacked");
+			throw new HibernateException("already have commited or rollbacked.");
 		}
 	}
 

@@ -31,7 +31,7 @@ public class CaseInsensitiveAliasToBeanResultTransformer extends AliasToBeanResu
 	public CaseInsensitiveAliasToBeanResultTransformer(Class resultClass) {
 		super(resultClass);
 		if (resultClass == null)
-			throw new IllegalArgumentException("resultClass cannot be null");
+			throw new IllegalArgumentException("resultClass cannot be null.");
 
 		isInitialized = false;
 		this.resultClass = resultClass;
@@ -53,9 +53,9 @@ public class CaseInsensitiveAliasToBeanResultTransformer extends AliasToBeanResu
 					this.setters[i].set(result, tuple[i], null);
 			}
 		} catch (InstantiationException e) {
-			throw new HibernateException("Could not instantiate resultclass: " + this.resultClass.getName());
+			throw new HibernateException("Could not instantiate resultclass: " + this.resultClass.getName() + ".");
 		} catch (IllegalAccessException e) {
-			throw new HibernateException("Could not instantiate resultclass: " + this.resultClass.getName());
+			throw new HibernateException("Could not instantiate resultclass: " + this.resultClass.getName() + ".");
 		}
 
 		return result;
@@ -78,7 +78,7 @@ public class CaseInsensitiveAliasToBeanResultTransformer extends AliasToBeanResu
 	// copy from AliasToBeanResultTransformer
 	private void check(String[] aliases) {
 		if (!Arrays.equals(aliases, this.aliases))
-			throw new IllegalStateException("aliases are different from what is cached; aliases=" + Arrays.asList(aliases) + " cached=" + Arrays.asList(this.aliases));
+			throw new IllegalStateException("aliases are different from what is cached; aliases=" + Arrays.asList(aliases) + " cached=" + Arrays.asList(this.aliases) + ".");
 	}
 
 	// add by SeanLeung
@@ -116,7 +116,7 @@ public class CaseInsensitiveAliasToBeanResultTransformer extends AliasToBeanResu
 
 			// ignore SQL fields;
 			// if (setter == null)
-			// throw new PropertyNotFoundException("Could not find a setter for property " + propertyName + " in class " + theClass.getName());
+			// throw new PropertyNotFoundException("Could not find a setter for property " + propertyName + " in class " + theClass.getName() + ".");
 		}
 		return setter;
 	}

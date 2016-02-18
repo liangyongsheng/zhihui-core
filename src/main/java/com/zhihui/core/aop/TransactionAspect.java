@@ -8,7 +8,8 @@ import com.zhihui.core.hibernate.MyTransaction;
 
 @Aspect
 public class TransactionAspect {
-	public Object Around(ProceedingJoinPoint proceedingJoinPoint) throws BusinessException {
+
+	public Object around(ProceedingJoinPoint proceedingJoinPoint) throws BusinessException {
 		Object value = null;
 		try {
 			MyTransaction.beginTransaction();

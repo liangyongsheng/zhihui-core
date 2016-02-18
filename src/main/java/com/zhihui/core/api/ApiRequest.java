@@ -41,10 +41,10 @@ public abstract class ApiRequest<T extends ApiResponse> {
 	private String oprtSecret;
 	@XmlTransient
 	@JsonIgnore
-	public String sign;
+	private String sign;
 	@XmlTransient
 	@JsonIgnore
-	public String messageBody;
+	private String messageBody;
 
 	public String getMethod() {
 		return method;
@@ -78,6 +78,14 @@ public abstract class ApiRequest<T extends ApiResponse> {
 		this.oprtSecret = oprtSecret;
 	}
 
+	public String getSign() {
+		return sign;
+	}
+
+	public void setSign(String sign) {
+		this.sign = sign;
+	}
+
 	public String getMessageBody() {
 		return messageBody;
 	}
@@ -104,19 +112,19 @@ public abstract class ApiRequest<T extends ApiResponse> {
 				throw new CheckSignException(e);
 			}
 			if (!signValid.equalsIgnoreCase(this.sign))
-				throw new CheckSignException("sign is incorrect");
+				throw new CheckSignException("sign is incorrect.");
 		}
 	}
 
 	public void checkSysParams() throws CheckException {
 		if (MyStringUtils.isEmpty(this.method))
-			throw new CheckEmptyException("field: metho, value is empty");
+			throw new CheckEmptyException("field: metho, value is empty.");
 		if (this.timestamp == null)
-			throw new CheckEmptyException("field: timestamp, value is empty");
+			throw new CheckEmptyException("field: timestamp, value is empty.");
 		if (this.oprtId == null || this.oprtId <= 0)
-			throw new CheckIllicitValueException("field: oprtId is illicit");
+			throw new CheckIllicitValueException("field: oprtId is illicit.");
 		if (MyStringUtils.isEmpty(this.oprtSecret))
-			throw new CheckEmptyException("field: oprtSecret, value is empty");
+			throw new CheckEmptyException("field: oprtSecret, value is empty.");
 	}
 
 	public abstract void checkApiParams() throws CheckException;
