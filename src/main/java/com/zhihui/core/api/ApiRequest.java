@@ -113,6 +113,8 @@ public abstract class ApiRequest<T extends ApiResponse> {
 			}
 			if (!signValid.equalsIgnoreCase(this.sign))
 				throw new CheckSignException("sign is incorrect.");
+			// set it null
+			this.messageBody = null;
 		}
 	}
 

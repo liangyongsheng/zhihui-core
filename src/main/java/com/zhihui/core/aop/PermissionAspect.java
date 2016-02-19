@@ -11,8 +11,10 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import com.zhihui.core.api.ApiBo;
 import com.zhihui.core.context.MyContext;
 import com.zhihui.core.exception.BusinessException;
-import com.zhihui.oprtforcore.dao.Oprt4SecretDao;
-import com.zhihui.oprtforcore.model.Oprt4SecretModel;
+import com.zhihui.oprtforcore.dao.OprtSecret4CoreDao;
+import com.zhihui.oprtforcore.dao.Permission4CoreDao;
+import com.zhihui.oprtforcore.model.OprtSecret4CoreModel;
+import com.zhihui.oprtforcore.model.Permission4CoreModel;
 
 @Aspect
 public class PermissionAspect {
@@ -27,15 +29,16 @@ public class PermissionAspect {
 				ApiBo<?> bo = (ApiBo<?>) target;
 				int oprtId = bo.getApiRequest().getOprtId();
 				String secret = bo.getApiRequest().getOprtSecret();
-				// 权限验证
-				Oprt4SecretModel validOne = null;
+				String method = bo.getApiRequest().getMethod();
+				// 密钥
+				OprtSecret4CoreModel validOne = null;
 				HibernateTemplate hibernateTemplate = (HibernateTemplate) MyContext.getClassPathXmlApplicationContext("oprt4core.mysql.connection.cfg.xml").getBean("hibernateTemplate");
-				Oprt4SecretDao oprtSecretDao = new Oprt4SecretDao();
+				OprtSecret4CoreDao oprtSecretDao = new OprtSecret4CoreDao();
 				oprtSecretDao.setHibernateTemplate(hibernateTemplate);
-				List<Oprt4SecretModel> oprt4SecretModels = oprtSecretDao.getByOprtId(oprtId, secret);
-				if (oprt4SecretModels.size() <= 0)
+				List<OprtSecret4CoreModel> oprtSecretModels = oprtSecretDao.getByOprtId(oprtId, secret);
+				if (oprtSecretModels.size() <= 0)
 					throw new BusinessException("不存在此操作员。");
-				for (Oprt4SecretModel e : oprt4SecretModels) {
+				for (OprtSecret4CoreModel e : oprtSecretModels) {
 					if (e.getExpiredDate() == null) {
 						validOne = e;
 						break;
@@ -48,6 +51,13 @@ public class PermissionAspect {
 					throw new BusinessException("密钥不存在或过期。");
 				if (!validOne.getSecret().equals(secret))
 					throw new BusinessException("密钥分大小写，此密钥大小写不正确。");
+
+				// 权限
+				Permission4CoreDao permissionDao = new Permission4CoreDao();
+				permissionDao.setHibernateTemplate(hibernateTemplate);
+				List<Permission4CoreModel> permissions = permissionDao.getByOprtId(oprtId, method);
+				if (permissions.size() < 0)
+					throw new BusinessException("此操作员没有权限：" + method + "。");
 			}
 		} catch (Throwable e) {
 			throw new BusinessException(e);
